@@ -72,6 +72,37 @@ The NREL's REPM, which powers fuel efficient routing in Google Maps, demonstrate
 While REPM likely uses aggregated and generalized data, our approach leverages the richness and breadth of individual vehicle sensor data.
 
 
+\section{Methodology} % Drew
+Our intended methodology for implementing the RNN-based machine learning model involves the creation of an end-to-end
+framework. This toolkit will have the components required to pull the required data from the National Renewable
+Energy Laboratory's (NREL) API, convert the sanitized dataset into the a form conducive to training a machine learning
+model, and train the RNN model to predict fuel economy for a given trip.
+
+Python offers the \emph{requests} module, which is designed to interface with HTTP-based APIs. This module will be at
+the core of our data aggregation component as it provides all of the needed functionality in a commonly-used and
+well-documented interface. This will be used in conjunction with the API provided by NREL to query vehicle and route
+information. By doing this, we can build a dataset in preparation for training the RNN. In addition, we can query the
+dataset arbitrarily to download new vehicle or route information as needed, allowing our dataset to grow dynamically
+with our need.
+
+Data sanitization will most likely have to be done manually, at least to some degree. Initial investigations of our
+dataset indicate that it is relatively clean, and it provides data that is consistently formatted. However, should the
+need arise for an individual to intervene and clean an anomalous piece of data, it will take place at this time.
+
+Preprocessing of the constructed dataset will be required to present it in a form that is usable by a machine learning
+model. During this time, data points irrelevant to our purposes can be omitted and the remaining information can be
+encoded. The dataset can also be split into training and validation subsets at this point as well.
+
+The final component will require training the Recurrent Neural Network to accurately predict vehicle fuel economy.
+\emph{PyTorch} has been chosen as the machine learning framework for this project. It is a common library that
+provides the means to both construct a RNN from scratch using built-in components and call upon a standardized class
+that implements the architecture in its entirety. Having both of these options will provide some freedom for
+experimenting with model structure and hyperparameters.
+
+Once our model has been trained, we will be able to load a file containing the pre-trained weights. At this point,
+further training can commence or the model can be used for inferencing previously-unseen data.
+
+
 
 This is a citation of NREL \cite{nrel_routee}.
 
