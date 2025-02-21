@@ -1,0 +1,51 @@
+\documentclass[letterpaper]{article}
+\usepackage{aaai}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\pdfinfo{
+/Title (Temperature-Dependent Estimation of Vehicle Fuel Economy)
+/Author (Sindu Chitraju, Samuel Howard, Seif Ilkbarieh, Om Solanki, Andrew Wheeler)}
+\setcounter{secnumdepth}{0}  
+ \begin{document}
+
+% The file aaai.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+
+% Remove the copyright from the footer
+\nocopyright
+\title{Temperature-Dependent Estimation of Vehicle Fuel Economy}
+\author{Sindu Chitraju, Samuel Howard, Seif Ilkbarieh, Om Solanki, Andrew Wheeler\\
+Tennessee Technological University
+}
+
+\maketitle
+
+\begin{abstract}
+\begin{quote}
+    This project proposes to investigate the application of Recurrent Neural Networks (RNNs) to predict vehicle fuel economy using readily available on-board diagnostics II (OBD-II) data. 
+    Leveraging the temporal dependencies inherent in driving patterns, we aim to develop a model that accurately predicts fuel consumption based on a sequence of sensor readings. 
+    This approach offers a personalized and adaptable alternative to generalized fuel economy estimates, further contextualized with external climate data for even more accurate estimates.
+    We will explore various RNN architectures and evaluate their performance using real-world driving data collected from a personal vehicle. 
+    This research has the potential to contribute to fuel efficiency optimization strategies, personalized driver feedback systems, and more accurate route planning tools, building upon existing work like the Route Energy Prediction Model (REPM) used in Google Maps. 
+\end{quote}
+\end{abstract}
+
+\section{Introduction}
+
+\noindent Fuel economy is a critical concern with its economic and environmental implications. 
+While standardized tests provide a general idea of the performance of a vehicle, real-world fuel consumption varies significantly based on driving style, traffic conditions, and other factors.
+This project addresses the need for route-specific, weather dependent fuel economy prediction by leveraging the power of RNNs to model the complex temporal relationships within driving data.
+We hypothesize that RNNs can learn the intricate dependencies between many of the variables that contribute to fuel economy including temperature, a metric that is not often accounted for.
+The result of this work could empower drivers to optimize their driving habits whilst vehicle manufacturers could optimize aspects of vehicle drivetrains to account for environmental conditions.
+
+
+
+\bibliographystyle{aaai} 
+\bibliography{references}
+
+
+\end{document}
