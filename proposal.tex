@@ -68,8 +68,11 @@ The result of this work could empower drivers to optimize their driving habits w
 \section{Related Work}
 
 This project builds upon existing research in fuel economy modeling and route planning. 
-The NREL's REPM, which powers fuel efficient routing in Google Maps, demonstrates the value of accurate fuel consumption prediction, preventing more than 1.2 million metric tons of carbon emissions \cite{google_2023_environmental_report}.
-While REPM likely uses aggregated and generalized data, our approach leverages the richness and breadth of individual vehicle sensor data.
+The NREL's REPM, which powers fuel efficient routing in Google Maps, 
+demonstrates the value of accurate fuel consumption prediction, 
+preventing more than 1.2 million metric tons of carbon emissions \cite{google_2023_environmental_report}.
+While REPM uses aggregated and generalized data from a few vehicles, 
+our approach leverages the richness and breadth of vehicle sensor data from a single vehicle for better accuracy \cite{nrel_routee}.
 
 
 \section{Methodology} % Drew
@@ -104,10 +107,30 @@ further training can commence or the model can be used for inferencing previousl
 
 
 
-This is a citation of NREL \cite{nrel_routee}.
+\section{Expected Results}
 
-This is a citation of Google \cite{google_2023_environmental_report}
+We expect that the model will outperform the RouteE model with real-world observed vehicular data. 
+As our model will be working with environmental and route data, 
+it will better be able to account for the conditions as well as the performance characteristics of the tested vehicle.
+Furthermore, real-time inferencing using our model would allow a driver to glean yet greater fuel economy while driving.
+Lastly, our model could enable a driver to save fuel by planning their trip ahead of time to optimize the time they leave for fuel economy.
 
+\section{Conclusion and Future Work}
+
+This project proposes to investigate the application of Recurrent Neural Networks (RNNs) to predict vehicle fuel economy using readily available on-board diagnostics II (OBD-II) data. 
+By leveraging the temporal dependencies inherent in driving patterns, 
+we aim to develop a personalized and adaptable model that accurately predicts fuel consumption based on a sequence of sensor readings. 
+This approach offers a significant advantage over generalized fuel economy estimates, 
+potentially empowering drivers to optimize their driving habits for improved fuel efficiency. 
+Furthermore, we will investigate the potential of incorporating external climate data to enhance prediction accuracy over contemporary models.
+
+The successful development of such a model has broad implications. 
+It could contribute to personalized driver feedback systems, 
+enabling real-time fuel efficiency coaching. 
+Moreover, the predicted fuel economy could be integrated into route planning tools, 
+complementing existing solutions like the Route Energy Prediction Model (REPM) used in Google Maps, 
+by providing personalized and dynamic fuel consumption estimates whilest en route. 
+This research aligns with the broader goals of promoting fuel conservation and sustainable transportation.
 
 \bibliographystyle{aaai} 
 \bibliography{references.bib}
