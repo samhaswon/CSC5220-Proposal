@@ -16,7 +16,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: resume.tex
+          root_file: proposal.tex
       - name: Get current timestamp
         id: timestamp
         run: echo "timestamp=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
@@ -34,7 +34,7 @@ jobs:
       - name: Upload PDF to Release
         uses: softprops/action-gh-release@v2
         with:
-          files: resume.pdf
+          files: proposal.pdf
           tag_name: release-${{ env.timestamp }}
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
