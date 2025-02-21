@@ -1,8 +1,30 @@
 \documentclass[letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
 \usepackage{aaai}
 \usepackage{times}
 \usepackage{helvet}
 \usepackage{courier}
+
+\begin{filecontents}{references.bib}
+@misc{nrel_routee,
+    author = "National Renewable Energy Laboratory NREL",
+    organization = "National Renewable Energy Laboratory",
+    year = "2017",
+    title = "Route{E}: Route {E}nergy {P}rediction {M}odel",
+    url = "https://www.nrel.gov/transportation/route-energy-prediction-model.html"
+}
+
+@misc{google_2023_environmental_report,
+    author = "Google",
+    organization = "Google Inc.",
+    year = "2023",
+    title = "Google 2023 {E}nvironmental {R}eport",
+    url = "https://www.gstatic.com/gumdrop/sustainability/google-2023-environmental-report.pdf"
+}
+
+\end{filecontents}
+
 \frenchspacing
 \setlength{\pdfpagewidth}{8.5in}
 \setlength{\pdfpageheight}{11in}
@@ -17,6 +39,7 @@
 
 % Remove the copyright from the footer
 \nocopyright
+
 \title{Temperature-Dependent Estimation of Vehicle Fuel Economy}
 \author{Sindu Chitraju, Samuel Howard, Seif Ilkbarieh, Om Solanki, Andrew Wheeler\\
 Tennessee Technological University
@@ -42,10 +65,19 @@ This project addresses the need for route-specific, weather dependent fuel econo
 We hypothesize that RNNs can learn the intricate dependencies between many of the variables that contribute to fuel economy including temperature, a metric that is not often accounted for.
 The result of this work could empower drivers to optimize their driving habits whilst vehicle manufacturers could optimize aspects of vehicle drivetrains to account for environmental conditions.
 
+\section{Related Work}
+
+This project builds upon existing research in fuel economy modeling and route planning. 
+The NREL's REPM, which powers fuel efficient routing in Google Maps, demonstrates the value of accurate fuel consumption prediction, preventing more than 1.2 million metric tons of carbon emissions \cite{google_2023_environmental_report}.
+
+% ~\\~\\~\\
+This is a citation of NREL \cite{nrel_routee}.
+
+This is a citation of Google \cite{google_2023_environmental_report}
 
 
 \bibliographystyle{aaai} 
-\bibliography{references}
+\bibliography{references.bib}
 
 
 \end{document}
