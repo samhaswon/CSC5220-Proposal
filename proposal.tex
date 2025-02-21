@@ -68,15 +68,23 @@ The result of this work could empower drivers to optimize their driving habits w
 \section{Related Work}
 
 This project builds upon existing research in fuel economy modeling and route planning. 
-The NREL's REPM, which powers fuel efficient routing in Google Maps, demonstrates the value of accurate fuel consumption prediction, preventing more than 1.2 million metric tons of carbon emissions \cite{google_2023_environmental_report}.
-While REPM likely uses aggregated and generalized data, our approach leverages the richness and breadth of individual vehicle sensor data.
-
+The NREL's REPM, which powers fuel efficient routing in Google Maps, 
+demonstrates the value of accurate fuel consumption prediction, 
+preventing more than 1.2 million metric tons of carbon emissions \cite{google_2023_environmental_report}.
+While REPM uses aggregated and generalized data from a few vehicles, 
+our approach leverages the richness and breadth of vehicle sensor data from a single vehicle for better accuracy \cite{nrel_routee}.
 
 
 This is a citation of NREL \cite{nrel_routee}.
 
 This is a citation of Google \cite{google_2023_environmental_report}
 
+\section{Expected Results}
+
+We expect that the model will outperform the RouteE model with real-world observed vehicular data. 
+As our model will be working with environmental and route data, it will better be able to account for the conditions as well as the performance characteristics of the tested vehicle.
+Furthermore, real-time inferencing using our model would allow a driver to glean yet greater fuel economy while driving.
+Lastly, our model could enable a driver to save fuel by planning their trip ahead of time to optimize the time they leave for fuel economy.
 
 \bibliographystyle{aaai} 
 \bibliography{references.bib}
