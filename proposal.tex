@@ -49,21 +49,22 @@ Tennessee Technological University
 
 \begin{abstract}
 \begin{quote}
-    This project proposes to investigate the application of Recurrent Neural Networks (RNNs) to predict vehicle fuel economy using readily available on-board diagnostics II (OBD-II) data. 
-    Leveraging the temporal dependencies inherent in driving patterns, we aim to develop a model that accurately predicts fuel consumption based on a sequence of sensor readings. 
+    This project proposes to investigate the application of Recurrent Neural Networks (RNNs) to predict vehicle fuel economy using accessible on-board diagnostics II (OBD-II) data. 
+    Leveraging the temporal dependencies inherent in driving patterns, we aim to develop a model that accurately predicts fuel consumption based on a sequence of sensor readings for a single vehicle.
     This approach offers a personalized and adaptable alternative to generalized fuel economy estimates, further contextualized with external climate data for even more accurate estimates.
-    We will explore various RNN architectures and evaluate their performance using real-world driving data collected from a personal vehicle. 
-    This research has the potential to contribute to fuel efficiency optimization strategies, personalized driver feedback systems, and more accurate route planning tools, building upon existing work like the Route Energy Prediction Model (REPM) used in Google Maps. 
+    % We will explore various RNN architectures and evaluate their performance using real-world driving data collected from a personal vehicle. 
+    This has the potential to contribute to fuel efficiency optimization, personalized driver feedback systems, and more accurate route planning tools. 
 \end{quote}
 \end{abstract}
 
 \section{Introduction}
 
-\noindent Fuel economy is a critical concern with its economic and environmental implications. 
-While standardized tests provide a general idea of the performance of a vehicle, real-world fuel consumption varies significantly based on driving style, traffic conditions, and other factors.
-This project addresses the need for route-specific, weather dependent fuel economy prediction by leveraging the power of RNNs to model the complex temporal relationships within driving data.
+\noindent Fuel economy is a critical concern with economic and environmental implications. 
+While standardized tests provide a general idea of the performance of a vehicle, 
+real-world fuel consumption varies significantly based on driving style, traffic conditions, and other factors.
+This project addresses the need for route-specific, weather-dependent fuel economy prediction by leveraging the power of RNNs to model the temporal relationships within driving data.
 We hypothesize that RNNs can learn the intricate dependencies between many of the variables that contribute to fuel economy including temperature, a metric that is not often accounted for.
-The result of this work could empower drivers to optimize their driving habits whilst vehicle manufacturers could optimize aspects of vehicle drivetrains to account for environmental conditions.
+% The result of this work could empower drivers to optimize their driving habits whilst vehicle manufacturers could optimize aspects of vehicle drivetrains to account for environmental conditions.
 
 \section{Related Work}
 
@@ -74,66 +75,64 @@ preventing more than 1.2 million metric tons of carbon emissions \cite{google_20
 While REPM uses aggregated and generalized data from a few vehicles, 
 our approach leverages the richness and breadth of vehicle sensor data from a single vehicle for better accuracy \cite{nrel_routee}.
 
-
 \section{Methodology} % Drew
 Our intended methodology for implementing the RNN-based machine learning model involves the creation of an end-to-end
-framework. This toolkit will have the components required to pull the required data from the National Renewable
-Energy Laboratory's (NREL) API, convert the sanitized dataset into the a form conducive to training a machine learning
-model, and train the RNN model to predict fuel economy for a given trip.
+framework. This will involve the components required to pull the required data from the National Renewable
+Energy Laboratory's (NREL) API for comparison, data processing, and training of the RNN model to predict fuel economy.
+We intend to start with estimations at a constant speed for a route, 
+then account for variations in speed along the route or even predicting the speed.
 
-Python offers the \emph{requests} module, which is designed to interface with HTTP-based APIs. This module will be at
-the core of our data aggregation component as it provides all of the needed functionality in a commonly-used and
-well-documented interface. This will be used in conjunction with the API provided by NREL to query vehicle and route
-information. By doing this, we can build a dataset in preparation for training the RNN. In addition, we can query the
-dataset arbitrarily to download new vehicle or route information as needed, allowing our dataset to grow dynamically
-with our need.
+% Python offers the \emph{requests} module, which is designed to interface with HTTP-based APIs. This module will be at
+% the core of our data aggregation component as it provides all of the needed functionality in a commonly-used and
+% well-documented interface. This will be used in conjunction with the API provided by NREL to query vehicle and route
+% information. By doing this, we can build a dataset in preparation for training the RNN. In addition, we can query the
+% dataset arbitrarily to download new vehicle or route information as needed, allowing our dataset to grow dynamically
+% with our need.
 
-Data sanitization will most likely have to be done manually, at least to some degree. Initial investigations of our
-dataset indicate that it is relatively clean, and it provides data that is consistently formatted. However, should the
-need arise for an individual to intervene and clean an anomalous piece of data, it will take place at this time.
+% Data sanitization will most likely have to be done manually, at least to some degree. Initial investigations of our
+% dataset indicate that it is relatively clean, and it provides data that is consistently formatted. However, should the
+% need arise for an individual to intervene and clean an anomalous piece of data, it will take place at this time.
 
-Preprocessing of the constructed dataset will be required to present it in a form that is usable by a machine learning
-model. During this time, data points irrelevant to our purposes can be omitted and the remaining information can be
-encoded. The dataset can also be split into training and validation subsets at this point as well.
+% Preprocessing of the constructed dataset will be required to present it in a form that is usable by a machine learning
+% model. During this time, data points irrelevant to our purposes can be omitted and the remaining information can be
+% encoded. The dataset can also be split into training and validation subsets at this point as well.
+ 
+% Maybe keep this one
+% The final component will be \emph{PyTorch}. 
+% It has been chosen as the machine learning framework for this project. 
+% It is a common library that provides many tools aligned with our goals. 
+% Having both of these options will provide some freedom for experimenting with model structure and hyperparameters.
 
-The final component will require training the Recurrent Neural Network to accurately predict vehicle fuel economy.
-\emph{PyTorch} has been chosen as the machine learning framework for this project. It is a common library that
-provides the means to both construct a RNN from scratch using built-in components and call upon a standardized class
-that implements the architecture in its entirety. Having both of these options will provide some freedom for
-experimenting with model structure and hyperparameters.
-
-Once our model has been trained, we will be able to load a file containing the pre-trained weights. At this point,
-further training can commence or the model can be used for inferencing previously-unseen data.
+Once our model has been trained, we will be able to load a file containing the pre-trained weights. 
+At this point, further training can commence or the model can be used for inferencing previously-unseen data from a live source or pre-recorded data.
 
 \section{Expected Results}
 
 We expect that the model will outperform the RouteE model with real-world observed vehicular data. 
-As our model will be working with environmental and route data, 
-it will better be able to account for the conditions as well as the performance characteristics of the tested vehicle.
-We intend to start with estimations at a constant speed of around the speed limit for a route, 
-then accounting for variations in speed along the route or even having the model predict the speed.
+With environmental and route data, 
+it will better be able to account for the conditions and the performance characteristics of the tested vehicle.
 Furthermore, real-time inferencing using our model would allow a driver to glean yet greater fuel economy while driving.
-Lastly, our model could enable a driver to save fuel by planning their trip ahead of time to optimize the time they leave for fuel economy.
+Lastly, our model could enable a driver to save fuel by planning their trip for fuel economy.
 
-\section{Conclusion and Future Work}
+\section{Conclusion}
 
-This project proposes to investigate the application of Recurrent Neural Networks (RNNs) to predict vehicle fuel economy using readily available on-board diagnostics II (OBD-II) data. 
-By leveraging the temporal dependencies inherent in driving patterns, 
-we aim to develop a personalized and adaptable model that accurately predicts fuel consumption based on a sequence of sensor readings. 
+This project proposes to investigate the application of RNNs to predict vehicle fuel economy using readily available OBD-II data. 
+By leveraging temporal dependencies inherent in driving patterns, 
+we aim to develop an adaptable model that accurately predicts fuel consumption based on a variety of sensor readings. 
 This approach offers a significant advantage over generalized fuel economy estimates, 
-potentially empowering drivers to optimize their driving habits for improved fuel efficiency. 
+empowering drivers to optimize their habits for improved fuel efficiency. 
 Furthermore, we will investigate the potential of incorporating external climate data to enhance prediction accuracy over contemporary models.
+Finally, it could contribute to personalized driver feedback systems for real-time fuel efficiency coaching. 
 
-The successful development of such a model has broad implications. 
-It could contribute to personalized driver feedback systems, 
-enabling real-time fuel efficiency coaching. 
-Moreover, the predicted fuel economy could be integrated into route planning tools, 
-complementing existing solutions like the Route Energy Prediction Model (REPM) used in Google Maps, 
-by providing personalized and dynamic fuel consumption estimates whilest en route. 
-This research aligns with the broader goals of promoting fuel conservation and sustainable transportation.
+% The successful development of such a model has broad implications. 
+% It could contribute to personalized driver feedback systems, 
+% enabling real-time fuel efficiency coaching. 
+% Moreover, the predicted fuel economy could be integrated into route planning tools, 
+% complementing existing solutions like the Route Energy Prediction Model (REPM) used in Google Maps, 
+% by providing personalized and dynamic fuel consumption estimates whilest en route. 
+% This research aligns with the broader goals of promoting fuel conservation and sustainable transportation.
 
 \bibliographystyle{aaai} 
 \bibliography{references.bib}
-
 
 \end{document}
