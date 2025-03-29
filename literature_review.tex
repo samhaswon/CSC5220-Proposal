@@ -1,0 +1,766 @@
+\documentclass[letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{aaai}
+\usepackage{times}
+\usepackage{helvet}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{filecontents}{references_lit.bib}
+@article{wang2020fuelnet,
+    title={FuelNet: A precise fuel consumption prediction model using long short-term memory deep network for eco-driving},
+    author={Wang, Guanqun and Zhang, Licheng and Xu, Zhigang and Hina, Syeda Mahwish and Sun, Pengpeng and Min, Haigen and Wei, Tao and Qu, Xiaobo},
+    year={2020}
+}
+
+@article{abukhalil2020fuel,
+  title={Fuel Consumption Using OBD-II and Support Vector Machine Model},
+  author={Abukhalil, Tamer and AlMahafzah, Harbi and Alksasbeh, Malek and Alqaralleh, Bassam AY},
+  journal={Journal of Robotics},
+  volume={2020},
+  number={1},
+  pages={9450178},
+  year={2020},
+  publisher={Wiley Online Library}
+}
+
+@article{yen_combining_2021,
+    author = {Yen, Meng-Hua and Tian, Shang-Lin and Lin, Yan-Ting and Yang, Cheng-Wei and Chen, Chi-Chun},
+    title = {Combining a Universal OBD-II Module with Deep Learning to Develop an Eco-Driving Analysis System},
+    journal = {Applied Sciences},
+    volume = {11},
+    year = {2021},
+    number = {4481},
+    url = {https://www.mdpi.com/2076-3417/11/10/4481},
+    issn = {2076-3417}
+}
+
+@article{rykala2023modeling,
+  title={Modeling vehicle fuel consumption using a low-cost OBD-II interface},
+  author={Ryka{\l}a, Magdalena and Grzelak, Ma{\l}gorzata and Ryka{\l}a, {\L}ukasz and Voicu, Daniela and Stoica, Ramona-Monica},
+  journal={Energies},
+  volume={16},
+  number={21},
+  pages={7266},
+  year={2023},
+  publisher={MDPI}
+}
+
+@article{filla2025using,
+  title={Using Weather Data for Improved Analysis of Vehicle Energy Efficiency},
+  author={Filla, Reno},
+  journal={Data},
+  volume={10},
+  number={3},
+  pages={31},
+  year={2025},
+  publisher={MDPI}
+}
+
+@article{Manjunath2024,
+    author = {Manjunath, T.K. and Ashok Kumar, P.S.},
+    title = {Fuel Prediction Model for Driving Patterns Using Machine Learning Techniques},
+    journal = {Journal of Computer Science},
+    volume = {20},
+    number = {3},
+    pages = {291--302},
+    year = {2024},
+    doi = {10.3844/jcssp.2024.291.302},
+    publisher = {Science Publications},
+    url = {https://thescipub.com/pdf/jcssp.2024.291.302}
+}
+
+@article{zhang2023novel,
+  title={Novel Neural-Network-Based Fuel Consumption Prediction Models Considering Vehicular Jerk},
+  author={Zhang, Licheng and Ya, Jingtian and Xu, Zhigang and Easa, Said and Peng, Kun and Xing, Yuchen and Yang, Ran},
+  journal={Electronics},
+  volume={12},
+  number={17},
+  pages={3638},
+  year={2023},
+  publisher={MDPI}
+}
+
+@article{topic2022neural,
+  title={Neural network-based prediction of vehicle fuel consumption based on driving cycle data},
+  author={Topi{\'c}, Jakov and {\v{S}}kugor, Branimir and Deur, Jo{\v{s}}ko},
+  journal={Sustainability},
+  volume={14},
+  number={2},
+  pages={744},
+  year={2022},
+  publisher={Multidisciplinary Digital Publishing Institute}
+}
+
+@article{abediasl2024real,
+  title={Real-time vehicular fuel consumption estimation using machine learning and on-board diagnostics data},
+  author={Abediasl, Hamidreza and Ansari, Amir and Hosseini, Vahid and Koch, Charles Robert and Shahbakhti, Mahdi},
+  journal={Proceedings of the Institution of Mechanical Engineers, Part D: Journal of Automobile Engineering},
+  volume={238},
+  number={12},
+  pages={3779--3793},
+  year={2024},
+  publisher={SAGE Publications Sage UK: London, England}
+}
+
+@article{yang2022predicting,
+  title={Predicting gasoline vehicle fuel consumption in energy and environmental impact based on machine learning and multidimensional big data},
+  author={Yang, Yushan and Gong, Nuoya and Xie, Keying and Liu, Qingfei},
+  journal={Energies},
+  volume={15},
+  number={5},
+  pages={1602},
+  year={2022},
+  publisher={MDPI}
+}
+
+@article{al2007experimental,
+  title={Experimental investigation of factors affecting vehicle fuel consumption},
+  author={Al-Momani, Walid M and Badran, Omar},
+  journal={International Journal of Mechanical and Materials Engineering},
+  volume={2},
+  number={2},
+  pages={180--188},
+  year={2007},
+  publisher={University of Malaya}
+}
+
+\end{filecontents}
+
+\frenchspacing
+\setlength{\pdfpagewidth}{8.5in}
+\setlength{\pdfpageheight}{11in}
+\pdfinfo{
+/Title (Temperature-Dependent Estimation of Vehicle Fuel Economy: Literature Review)
+/Author (Sindu Chitraju, Samuel Howard, Seif Ilkbarieh, Om Solanki, Andrew Wheeler)}
+\setcounter{secnumdepth}{0}  
+
+\begin{document}
+
+% The file aaai.sty is the style file for AAAI Press 
+% proceedings, working notes, and technical reports.
+
+% Remove the copyright from the footer
+\nocopyright
+
+\title{Temperature-Dependent Estimation of Vehicle Fuel Economy:\\Literature Review}
+\author{Sindu Chitraju, Samuel Howard, Seif Ilkbarieh, Om Solanki, Andrew Wheeler\\
+Tennessee Technological University
+}
+
+\maketitle
+
+% Samuel
+\section*{Introduction}
+
+Accurate fuel consumption prediction has a variety of consequences for the daily
+lives of average people and, from a broader perspective, the world. These
+predictions can help individuals choose more efficient vehicles, choose more
+efficient routes, drive more efficiently and safely, and save themselves money.
+Applied at scale, nation states can also see a greater level of energy
+independence in a world of increasing political turmoil from a reduction in the
+consumption of their fleets. Finally, a reduction in consumption from
+transportation directly leads to a reduction in emissions of greenhouse gases.
+
+To these ends, there has been a great body of work towards the prediction of
+fuel economy to the benefit of drivers. In this review, we explore the various
+methods tried thus far, ranging from basic statistics-based modeling to more
+advanced neural networks. Importantly, we identify key metrics found to most
+contribute to the accurate modeling of a vehicle's fuel consumption. 
+
+Data for this modeling comes from a variety of sources. The most important data for this
+purpose comes via a vehicle's On Board Diagnostics II (OBD-II) port, standard on
+gasoline-powered vehicles made after 1996 in the United States. This
+specification defines a standard hardware interface for gathering key, real-time
+vehicle metrics along with trouble codes stored by the car's Engine Control Unit
+(ECU). This enables vehicle telematics with auxiliary hardware to collect
+vehicle data for everything from vehicle tracking to driving habit feedback. 
+
+In light of the ramifications associated with fuel consumption forecasting, many
+investigations have explored a variety of approaches to formulate and enhance
+vehicle efficiency prediction. The progress in data acquisition technologies,
+most notably via standardized protocols such as OBD-II, has facilitated more
+rigorous and adaptable analyses, thereby equipping developments in such modeling.
+
+\section*{Importantce of Data}
+
+% Drew
+\subsection*{Experimental Investigation of Factors Affecting Vehicle Fuel Consumption}
+
+Previous work has already been completed that evaluates a number of factors that
+can influence the fuel efficiency of vehicles. The work of \cite{al2007experimental}
+tests a number of parameters, including altitude, vehicle speed, and
+tire pressure, to name a few. The authors evaluated a number of vehicle makes
+and models, with the model years used spanning nearly a decade and a half. 
+
+To measure fuel consumption, a flow rate sensor was integrated into the fuel line
+between the fuel tank and fuel pump of the tested vehicles. Because the sensor
+is part of the supplying fuel line, high-accuracy measurements can be obtained
+without having to make significant modifications to more complicated components,
+such as the engine. 
+
+While this work takes into account a large number of
+parameters and their impact on fuel economy, the cars utilized in the experiment
+are not accurate reflections of modern internal combustion engines. This is an
+important point to consider because cars manufactured before the 2000s often
+utilize a mechanical carburetor for the method of fuel delivery to the engine,
+while newer cars use high-precision fuel injection systems. 
+
+Additionally, the
+authors had to make modifications to the car's fuel line to integrate the sensor.
+While this provides very accurate measurements, it is beyond what can be
+considered an easily accessible method of measurement.
+
+\subsection*{Predicting Gasoline Vehicle Fuel Consumption in Energy and Environmental 
+Impact Based on Machine Learning and Multidimensional Big Data}
+
+The work of \cite{yang2022predicting} evaluates the real-world fuel economy performance of vehicles 
+and how it compares to the estimated values provided by car manufacturers. The authors then 
+utilized a number of machine learning algorithms in an attempt to create accurate predictions 
+of fuel consumption based on a number of criteria.
+
+Real-world fuel economy data was collected via the BearOil app, containing reported fuel 
+efficiency from the app’s users. Additionally, behavioral data of users’ driving habits was 
+gathered using a basic twenty-question survey. Environmental data was also collected to provide 
+additional parameters for the models.
+
+The collected data was cleaned and five models were trained over it: a linear regression, Naive 
+Bayes, neural network, random forest, and Light Gradient-Boosting Machine (LightGBM). 
+Ten-fold cross validation was used while training all model types in order to gauge performance.
+
+As an added step to increase the explainability of the results obtained, the weights of the 
+random forest model were extracted to evaluate the influence each parameter had.
+While \cite{yang2022predicting} take a very large-scale approach, having nearly one million 
+records to train  models over, their scope is quite large and attempts to predict fuel 
+consumption using a fair  number of qualitative data points, such as a driver’s ability. 
+Additionally, the focus of their  work is on how multiple models perform in the context of 
+each other, as opposed to how accurate a single model can be.
+
+\subsection*{Experimental Investigation of the Impact of Jerk on Vehicle Fuel
+Consumption Prediction}
+
+The work of \cite{zhang2023novel} evaluates the effects of vehicle jerk, where large
+changes in speed occur over a very short period of time, on fuel economy. 
+
+The authors then attempt to use data preprocessing and machine learning models to
+make accurate predictions, regardless of the presence of jerk in the data. The
+authors utilized a system that integrated a global positioning system (GPS) and
+on-board diagnostic (OBD) interface, allowing them to gather high-accuracy,
+high-precision positional data and real-time statistics on the state of the
+vehicle. 
+
+This work more closely aligns with the proposed methodology, utilizing
+a common diagnostic tool compatible with a wide variety of modern vehicles.
+Where this work differs is that it utilizes multiple machine learning models and
+evaluates their performance in the context of each other. Our proposal focuses
+on a single model and the extent to which it can accurately predict fuel
+consumption.
+
+\section*{Utilization of On-Board Diagnostics Data}
+
+% Samuel
+\subsection*{Modeling Vehicle Fuel Consumption Using a Low-Cost OBD-II Interface}
+
+[Rykała et al.] developed an innovative approach to modeling vehicle fuel
+consumption by leveraging data collected using a low-cost OBD2 adapter alongside
+onboard phone sensors. Their study aimed to explore and compare various
+predictive modeling techniques to identify the most effective method, using
+parameters such as GPS coordinates, driving speed, and additional signals
+processed through the vehicle's diagnostic system and phone sensors. With this
+data, they implemented and tested three distinct types of models: a multivariate
+regression model, decision trees, and a set of 750 multilayer perceptron (MLP)
+models. Among these, the MLP models demonstrated the greatest accuracy, making
+them the most reliable choice for forecasting fuel consumption under diverse
+driving conditions. 
+
+They captured data from a test drive of approximately 320
+kilometers (199 miles) on a selected route. Data collected includes engine speed
+(RPM), vehicle speed, gear, acceleration, engine load, and road slope based on a
+moving average. Of these, the most important variables were gear, speed, and
+engine load. Information for the gear was determined with a linear regression of
+vehicle speed and engine speed.
+
+\subsection*{Combining a Universal OBD-II Module with Deep Learning to Develop
+an Eco-Driving Analysis System}
+
+Greater accuracy can still be gained using larger networks. [Yen et al.] explore
+utilizing Elman Recurrent Neural Network (RNN) and Feed-Forward Backpropagation
+(FFB) models to predict fuel consumption with the goal of progressing
+energy-saving and safe-driving developments. To this end, they collected data
+from several vehicles to feed these networks. Their key contribution is their
+models, combined with a graphical user interface for actionable driver feedback.
+This includes engine speed, vehicle speed, and other driving behavior metrics.
+
+For their data, they used three vehicles driven on a mix of relatively flat and
+mountainous roads common in western Taiwan. Each of the vehicles was driven
+along the same 209-kilometer (130-mile) route. This data was cleaned and
+normalized before it was used for training the models. For comparison, they
+calculated the instantaneous fuel consumption using the equation: 
+
+\[
+\begin{aligned}
+    \mathrm{FuelConsumption}_{\mathrm{inst}} =&~ \mathrm{RPMWeight}_{\mathrm{avg}}
+    \times \mathrm{EngineLoad}_{\mathrm{avg}}\\
+    &\times 2.3 \times \mathrm{FuelFactor}
+    \times t(s)\times\\ 
+    &\mathrm{EngineDisplacement}/7545  
+\end{aligned}
+\] 
+
+\noindent
+This provided them with an
+accurate baseline by which to compare the various methods tested within their
+paper.
+
+% Saif
+
+\subsection*{Fuel Consumption Using OBD-II and Support Vector Machine Model}
+
+The authors in \cite{abukhalil2020fuel} introduce a Machine Learning (ML)-based
+model to estimate real-time fuel consumption by collecting data from an OBD-II
+scanner. The authors’ model combines a Support Vector Machine (SVM) algorithm
+with Lagrange interpolation to analyze the relationship between engines
+parameters and fuel consumption. The engine parameters include Revolutions Per
+Minute (RPM) and Throttle Position Sensor (TPS). To validate their model, the
+authors use Mass Air Flow (MAF)-based calculations. The authors conduct their
+experiments on a fixed 66 kilometer highway route using three gasoline-powered
+vehicles that have different engine displacements and horsepowers. The author’s
+model was able to achieve a Root-Mean-Square Error (RMSE) score of 2.4364,
+proving its potential in predicting fuel consumption. 
+
+The data employed in this
+work was collected from three test-vehicles, namely a 2017 Ford Fusion, 2016
+Toyota Camry, as well as a 2006 Mercedes-Benz E280. A CDP Autocom OBD-II scanner
+was connected to every car, and the data points were collected during a
+40-minute drive along a steep 66 kilometer route in different areas in Jordan.
+The authors were able to collect 160 sample points during the drive, and the
+data points include time-series readings of engine RPM, vehicle speed, throttle
+position, and corresponding fuel consumption rates. The data points were used to
+build polynomial regression models and evaluate the prediction accuracy of fuel
+consumption against standard manufacturer values and traditional estimation
+formulas. Overall, the authors’ model was able to show the influence that engine
+size has on fuel consumption in real-world scenarios.
+
+% Om
+\subsection*{Fuel Prediction Model for Driving Patterns Using Machine Learning
+Techniques}
+
+\cite{Manjunath2024} explore a machine learning-based approach to predict and improve
+fuel consumption by analyzing how people drive. They used linear regression and
+support vector regression to estimate fuel efficiency, with the goal of
+encouraging eco-friendly driving and cutting down on greenhouse gas emissions.
+
+To gather real-world data, they used an ELM 327 OBD-II tool connected to a
+laptop, which recorded 13 different sensor readings from the car. The data was
+cleaned, normalized, and fine-tuned to highlight the most relevant driving
+factors before being used to train the models. 
+
+They evaluated the models using
+standard metrics like R-squared, MSE, MAE, and RMSE, and found that linear
+regression performed especially well. This paper lines up closely with what
+we're working on, especially since they also used an OBD-II tool for data
+collection. It offers some solid ideas for how we might approach fuel efficiency
+prediction. That said, they only tried two machine learning techniques---so
+there may be room for us to explore and find an even better-performing model.
+
+\section*{External Data}
+
+\subsection*{Using Weather Data for Improved Analysis of Vehicle Energy
+Efficiency}
+
+The work of \cite{filla2025using} examines how weather conditions impact vehicle energy
+efficiency, particularly for battery electric vehicles (BEVs). While previous
+research has explored energy efficiency models, this paper stands out by using
+national meteorological data to refine estimates of energy loss and improve
+predictions of vehicle performance. 
+
+The data sources include Swedish
+institutions, as well as international ones like MET Norway and Deutscher
+Wetterdienst. The study combines GNSS-based vehicle logs with weather data,
+using two efficient algorithms to match weather conditions to the vehicle's
+location and time. Filla compares in-vehicle sensor data to both weather station
+data and interpolated weather data to assess accuracy and relevance. 
+
+Although the research focuses on EVs and doesn't cover gasoline vehicles, it offers
+valuable insight into how weather data can be used to better predict energy
+efficiency. This approach could guide our project to answer the questions.
+
+\section*{Machine Learning Applications}
+
+% Seif
+\subsection*{FuelNet: A precise fuel consumption prediction model using long
+short-term memory deep network for eco-driving}
+
+The authors in \cite{wang2020fuelnet} introduced FuelNet, which is a Long
+Short-Term Memory (LSTM)-based Deep Learning (DL) model designed to predict fuel
+consumption in different driving scenarios. The authors argue that there is
+limited research being done on physics-based and shallow learning model. As a
+result, they leverage the long-term dependency capabilities of LSTM networks to
+work on their time-series vehicle data. The architecture of FuelNet is composed
+of three layers and has been optimized for input efficiency, allowing it to
+achieve a high Coefficient of Determination (R2) prediction score of 90.1\% while
+using limited computational resources. FuelNet outperformed models like VSP,
+VT-Micro, GRNN, RNN, and GRU in terms of error rates and generalizability. 
+
+As for the data employed in this work, the authors used time-series data collected
+from vehicles to train and test FuelNet. Their data specifically captures five
+features, namely vehicle speed, acceleration, GPS coordinates, as well as fuel
+consumption. The data they used was captured over a fixed distance of 300 meters,
+and across various driving states such as high-speed, optimal-speed, and
+stop-and-go conditions. Their data also supports speed ranges between 10 and 80
+kilometers per hour, allowing FuelNet to learn various fuel consumption patterns.
+To collect the ideal set of features for the prediction process, the authors
+conducted several experiments using different input combinations. The authors
+determined that speed and acceleration as input allowed FuelNet to achieve its
+highest accuracy. Additionally, the data used included real-world scenarios,
+such as data from Shaanxi Motor Trucks. This allowed the authors to validate the
+anomaly detection capabilities of FuelNet, which helps in identifying issues
+such as fuel leaks effectively. Overall, FuelNet was able to prove its
+practicality in detecting abnormal fuel consumption trends, thereby enhancing
+driving efficiency.
+
+\subsection*{Real-time vehicular fuel consumption estimation using machine
+learning and on-board diagnostics data}
+
+\cite{abediasl2024real} explore machine learning for real-time fuel consumption estimation
+using onboard diagnostics (OBD) data from fleet vehicles. Traditional methods,
+like ECU-based estimates, can be inaccurate or expensive, so they tested four
+models: Random Forest (RF), Artificial Neural Networks (ANN), Support Vector
+Machines (SVM), and k-Nearest Neighbors (KNN). RF and ANN performed the best, so
+they focused on comparing these two. 
+
+They collected OBD data from different
+vehicle types (sedans, SUVs, pickup trucks) with various powertrains, including
+hybrids, and included cold-start conditions to capture fuel consumption during
+engine warm-up. The models were trained and tested using a 70-30 data split with
+five-fold cross-validation to improve reliability. 
+
+RF handled different driving
+conditions better, especially in urban areas, because it avoided overfitting and
+worked well with diverse data. ANN required data normalization but still had
+higher errors, particularly in stop-and-go traffic. Both models outperformed
+traditional ECU-based methods, proving that machine learning is a strong option
+for fuel prediction. This study is relevant to our work because it also focuses
+on OBD data and machine learning for fuel estimation. Their findings suggest RF
+is a strong choice, but there's room to explore additional models or
+optimizations to improve accuracy further. Future research could test different
+driving conditions, incorporate more OBD parameters, or use hybrid models that
+combine multiple approaches for even better results.
+
+\subsection{Neural Network-Based Prediction of Vehicle Fuel Consumption Based on
+Driving Cycle Data}
+
+\cite{topic2022neural} used neural networks to predict vehicle fuel consumption based on
+driving cycle data, including speed, acceleration, and road slope. Traditional
+models, like linear regression, don't always capture these factors well, so they
+developed a two-stage neural network model---one part predicts driving patterns,
+and the other estimates fuel use. 
+
+They trained and tested their model using six months of GPS and CAN bus data from city buses 
+in Dubrovnik. The data was broken down into smaller driving cycles, and synthetic cycles 
+were generated to improve prediction accuracy. Their results showed that neural networks 
+outperformed traditional models in both accuracy and speed. 
+
+A key finding was that road slope had a big impact on fuel consumption, making it an 
+important factor to include. The model also showed potential for real-world applications 
+like optimizing vehicle routes, validating driving cycle data, and even estimating battery
+charge levels for electric vehicles. The study suggests that using advanced machine learning 
+techniques can lead to better fuel efficiency insights, helping both policymakers and 
+transportation companies make informed decisions. Additionally, their approach could be 
+adapted for different vehicle types or extended to analyze environmental impacts related 
+to fuel consumption.
+
+\section*{Comparisons}
+
+% Sindu
+
+\subsection*{OBD-II Data for Fuel Consumption Prediction}
+
+This theme includes studies that collect vehicle data through OBD-II and predict
+fuel consumption using machine learning techniques. 
+
+[Zhang et al.] evaluates the
+effects of vehicle jerk, where large changes in speed occur over a very short
+period of time, on fuel economy. The authors utilized a system that integrated a
+global positioning system (GPS) and on-board diagnostic (OBD) interface,
+allowing them to gather high-accuracy, real-time data on vehicle status. This
+work closely aligns with the proposed methodology, utilizing a common diagnostic
+tool compatible with a wide variety of modern vehicles. 
+
+[Rykała et al.]
+developed an innovative approach to modeling vehicle fuel consumption by
+leveraging data collected using a low-cost OBD-II adapter alongside onboard
+phone sensors. They tested three distinct types of models: a multivariate
+regression model, decision trees, and a set of 750 multilayer perceptron (MLP)
+models. Among these, the MLP models demonstrated the greatest accuracy, making
+them the most reliable choice for forecasting fuel consumption under diverse
+driving conditions. 
+
+[Yen et al.] explore utilizing Elman Recurrent Neural
+Network (RNN) and Feed-Forward Backpropagation (FFB) models to predict fuel
+consumption with the goal of progressing energy-saving and safe-driving
+developments. They collected data from several vehicles to feed these networks.
+For their data, they used three vehicles driven on a mix of relatively flat and
+mountainous roads common in western Taiwan. Each of the vehicles was driven
+along the same 209 kilometer (130 mile) route. 
+
+[Manjunath and Kumar] explore a
+machine learning-based approach to predict and improve fuel consumption by
+analyzing how people drive. To gather real-world data, they used an ELM 327
+OBD-II tool connected to a laptop, which recorded 13 different sensor readings
+from the car. They used linear regression and support vector regression to
+estimate fuel efficiency, with the goal of encouraging eco-friendly driving and
+cutting down on greenhouse gas emissions. 
+
+[Abukalil et al.] present a Machine
+Learning (ML)-based model to estimate real-time fuel consumption by collecting
+data from an OBD-II scanner. The authors' model combines a Support Vector
+Machine (SVM) algorithm with Lagrange interpolation to analyze the relationship
+between engine parameters and fuel consumption.The Experiments were conducted on
+a fixed 66 kilometer highway route using three gasoline-powered vehicles that
+have different engine displacements and horsepower. The author's model was able
+to achieve a Root-Mean-Square Error (RMSE) score of 2.4364, proving its
+potential in predicting fuel consumption. 
+
+[Abediasl et al.] explore machine
+learning for real-time fuel consumption estimation using onboard diagnostics
+(OBD) data from fleet vehicles. They collected OBD data from different vehicle
+types (sedans, SUVs, pickup trucks) with various powertrains, including hybrids,
+and included cold-start conditions to capture fuel consumption during engine
+warm-up. They tested four models: Random Forest (RF), Artificial Neural Networks
+(ANN), Support Vector Machines (SVM), and k-Nearest Neighbors (KNN). RF and ANN
+performed the best, so they focused on comparing these two. 
+
+\subsubsection*{Comparison}~\\
+All six papers leverage OBD-II diagnostics, but they differ in model, vehicle diversity,
+and methods. While Abukhalil et al., Majunath and Kumar, and Abediasl et al.
+favor regression and SVM-based models, Rykala et al. and Yen et al. employ deep
+learning approaches like MLPs and RNNs. Zhang et al. focus on the impact of jerk,
+while Abesiasl et al. look into model generalization across vehicle types and
+cold-start conditions. All together, these studies confirm the value of OBD data.
+
+% Andrew 
+
+\subsection*{Mechanism of Prediction/Evaluation}
+
+The papers evaluated as part of the literature review utilized a variety of
+analysis and prediction techniques, with several papers using multiple methods.
+The most basic technique used was simple analysis and correlation of data with
+fuel consumption. This was the case in \cite{al2007experimental}, who
+simply correlated how fuel consumption changes as a certain parameter, such as
+speed, increases. 
+
+\cite{filla2025using} also used analysis techniques to
+examine how atmospheric and weather conditions affect the performance of a
+vehicle and its fuel consumption. Weather data for the locations the vehicle was
+tested in was pulled from a publicly available database and used to augment the
+engine data extracted from the vehicle. 
+
+Other approaches to analysis and prediction of fuel consumption often used machine 
+learning models, with some of them comparing multiple models in order to gauge the 
+performance of differing architectures. 
+
+Linear regressions are very simple machine  learning models that attempt to establish 
+a linear relationship between two or more  parameters. This was one of the model types 
+evaluated by \cite{topic2022neural} when they evaluated the performance of a deep 
+neural network (DNN). Linear regressions were also tested by \cite{yang2022predicting} 
+as part of a series of tests using different models. 
+
+Linear regressions were also tested in the work of
+\cite{Manjunath2024}, where data was captured from the OBD and evaluated by the
+model. Additionally, a support vector regression was trained and compared
+against the linear regression using a number of metrics, including mean absolute
+error (MAE) and mean squared error (MSE). 
+
+Other model architectures implemented by \cite{yang2022predicting} include Naive Bayes, 
+a neural network, a random forest, and LightGBM. 
+
+A multiple regression model was used by \cite{rykala2023modeling} to attempt to establish 
+more complex relationships between multiple parameters. Additionally, V-fold cross-validation 
+was used to test how well the model has fit to the dataset. Other model architectures
+employed by the authors of this paper include decision trees and artificial
+neural networks (ANNs). 
+
+Support vector machines (SVMs) are a basic machine learning model used by some of the authors. 
+The work presented in \cite{abukhalil2020fuel} used a SVM to model and estimate fuel 
+consumption based on binary data extracted from the OBD II interface. 
+
+Long short-term memory (LSTM), a machine learning model capable of contextual analysis of data, 
+was another algorithm used in some of the papers. \cite{wang2020fuelnet} used this
+model architecture to predict fuel consumption at different velocities,
+including at high speeds, in stop-and-go traffic, and cruising at an optimal
+speed. 
+
+Random forests and ANNs were used by \cite{abediasl2024real} to
+evaluate data in real time and provide up-to-date estimations for future
+consumption. A variety of data was extracted from the OBD in real time and sent
+to each of the models to gauge their performance. 
+
+Deep learning models were also used to make predictions about future fuel consumption 
+based on a given set of circumstances. The authors in \cite{yen_combining_2021} used 
+different methods to connect the layers of the model, and then they evaluated how the 
+predicted fuel efficiency compares to the calculated value collected from sensors. The
+primary model evaluated by \cite{topic2022neural} was also a deep neural
+network (DNN) trained to evaluate fuel efficiency. 
+
+The authors of \cite{zhang2023novel} tested a number of models to evaluate how vehicular 
+jerk, the change in acceleration over a period of time and the mathematical derivative of 
+acceleration plotted on a graph, influence the fuel efficiency of a vehicle. To do this, 
+they provided a number of parameters to a LSTM, recurrent neural network (RNN), nonlinear 
+auto-regressive model with exogenous inputs (NARX), and a generalized regression neural 
+network (GRNN).
+
+% Sindu
+
+\subsection*{Datasets}
+
+The datasets used in the reviewed papers vary significantly in terms of their
+collection methods, the types of vehicles involved, and the parameters recorded.
+Most studies focus on using On-Board Diagnostics (OBD) data, GPS data, or a
+combination of both to predict fuel consumption. 
+
+[Al-Momani and Badran]: This study uses real-time fuel consumption data gathered 
+through a flow rate sensor integrated into the fuel line of vehicles. The dataset spans 
+different vehicle makes and models, dating back to the 1990s. This approach captures fuel
+consumption accurately, though it involves significant modifications to the
+vehicle, making it less practical for widespread use. 
+
+[Yang et al.]: A large-scale dataset is used, with nearly one million records gathered 
+from the BearOil app. This data includes fuel efficiency reports, driving behavior data
+from surveys, and environmental factors. The large dataset allows for comprehensive analysis 
+and multiple machine learning models, but the focus is more on model comparison rather 
+than the specific prediction of fuel consumption.
+
+[Zhang et al.]: The data collected includes vehicle speed, acceleration, and
+GPS data, which allows for real-time analysis of driving conditions, including
+the effects of sudden changes in speed (jerk). Their dataset offers high
+precision due to the combination of GPS and OBD data. 
+
+[Rykała et al.]: This study utilizes a low-cost OBD-II adapter and onboard phone 
+sensors to gather data from a 320 km route. Variables like engine speed, vehicle speed, 
+and road slope were recorded, with the most influential parameters being gear, speed, and
+engine load. 
+
+[Yen et al.]: Three vehicles were used in their study, and data was gathered on a 
+209-kilometer route through a combination of GPS and OBD data. The study uses driving 
+behavior metrics, such as engine speed and vehicle speed, to predict fuel consumption 
+using advanced deep learning models. 
+
+[TK and PS]: This study collects data via an ELM 327 OBD-II tool connected to a laptop, 
+which records 13 different sensor readings. Data is cleaned and normalized before being 
+used to train models for fuel consumption prediction. The focus is on identifying 
+eco-driving habits. 
+
+[Filla et al.]: The authors use GPS-based vehicle logs along with national meteorological 
+data to predict the impact of weather conditions on energy efficiency. While this data is 
+specifically for battery electric vehicles (BEVs), it offers valuable insights into how
+environmental data can complement vehicle performance data. 
+
+[Wang et al.] (FuelNet): The FuelNet model uses time-series data, including vehicle speed,
+acceleration, GPS coordinates, and fuel consumption. The dataset was gathered from real-world 
+driving scenarios and spans various driving conditions, allowing for robust predictions of 
+fuel consumption based on LSTM networks. 
+
+[Abukhalil et al.]: The data used in this paper was collected using an OBD-II scanner attached
+to three vehicles (Ford Fusion, Toyota Camry, and Mercedes-Benz E280). Parameters like engine 
+RPM, throttle position, and fuel consumption rates were recorded during a 66-kilometer drive. 
+
+Authors of Real-time Fuel Consumption Estimation: The dataset for this study was collected 
+from fleet vehicles, capturing OBD data from various vehicle types, including hybrids, and 
+tracking cold-start conditions. The data was split for training and testing four machine
+learning models to estimate fuel consumption. 
+
+Authors of Neural Network-Based Prediction: This study used six months of GPS and CAN bus data 
+from city buses. The dataset includes driving cycle data such as speed, acceleration, and road
+slope, which is crucial for predicting fuel consumption in real-world conditions.
+
+\section*{Discussion}
+
+The reviewed studies provide valuable insights into how machine learning and data collection 
+methods can be used to predict vehicle fuel consumption. However, there are significant 
+differences in the datasets used, which affect the robustness of the models developed. 
+
+\subsection*{Strengths}
+
+Most studies utilize a variety of data sources, such as OBD data, GPS data, driving behavior
+data, and environmental factors. This variety helps ensure that the models account for 
+different aspects of vehicle performance and driving conditions, which is essential for 
+accurate predictions. Secondly, many studies leverage real-world data from fleets, consumers, 
+and specific driving routes, making their models more applicable to actual conditions. 
+For instance, [Yang et al.] and [Abukhalil et al.] gather large-scale, real-time data from 
+various vehicles, which ensures that their models can generalize well across different vehicle 
+types. Next, several studies, such as those by [Yen et al.] and [Wang et al.], explore 
+advanced machine learning models (e.g., RNN and FNN), which can offer higher accuracy and
+performance compared to traditional methods. These models are especially effective when 
+working with large, complex datasets as we have.
+
+\subsection*{Weaknesses}
+
+Some studies require specialized equipment or significant  modifications to vehicles, 
+which can limit the practicality of their methods. For example, [Al-Momani] and [Badran] use a 
+flow rate sensor that requires integration into the vehicle’s fuel line, which is not easily 
+accessible for everyday users.
+
+While some studies focus on a broad range of parameters, others, such as TK and PS, narrow 
+their focus to a small set of factors like driving habits. This may limit the models' 
+ability to capture all the nuances of fuel consumption behavior. Additionally, [Filla et al.] 
+focus exclusively on electric vehicles, limiting the applicability of their findings to 
+gasoline-powered vehicles.
+
+Several studies compare multiple machine learning models, such as [Yang et al.] and 
+[Zhang et al.], but it is often unclear which model performs best under different 
+circumstances. The use of several models can sometimes obscure the optimal choice for 
+specific scenarios. [Abukhalil et al.] and Real-time Fuel Consumption Estimation studies show 
+promising results with Random Forest (RF) and ANN models, but further exploration is needed 
+to determine the best model for different types of vehicles and driving conditions.
+
+
+\subsection*{Opportunities}
+
+Combining multiple data sources (e.g., OBD, GPS, and weather data) could lead to more accurate 
+predictions. Studies like [Filla et al.] demonstrate the potential benefits of including 
+environmental data, which could be explored further in future work.
+
+There is room to refine models by incorporating additional parameters or optimizing the 
+existing models. For example, [Wang et al.] (FuelNet) use time-series data and LSTM networks, 
+which are promising for improving prediction accuracy, especially in real-time applications.
+
+Some studies, such as [Yang et al.], use massive datasets to train their models. This 
+scalability could be expanded to include more vehicles, longer driving routes, and more 
+diverse driving conditions to improve the robustness of the models.
+
+The reviewed studies showcase the value of using data-driven methods to predict vehicle fuel 
+consumption. However, there are clear trade-offs between model complexity, data requirements, 
+and accuracy. Future work can focus on optimizing these models and making them more accessible 
+for real-world applications.
+
+% Seif, minor edits by Samuel
+
+\section*{Conclusion}
+
+To conclude, the literature review shows the growing importance and feasibility
+of accurately predicting vehicle fuel consumption using data-driven approaches.
+Many studies have proven that the integration of ML models, such as RF and SVM,
+with real-world data yields high accuracy in predicting fuel efficiency across
+different driving conditions. DL models, such as LSTM and MLP, have also shown
+promise in predicting fuel efficiency. Moreover, sources like GPS, weather data,
+as well as driving behavior surveys have shown a potential in helping capture
+trends in fuel consumption. These models and data sources collectively help
+drivers save money when driving by improving their vehicles' fuel efficiency,
+reducing the environmental damage caused by vehicles, and helping reach
+policy-related objectives. 
+
+Although the results are promising, challenges still exist in terms of data collection 
+scalability, model generalizability, and practical implementation. Studies tend to rely on 
+small sample sizes, specific routes, advanced sensors, and complex modifications that limit 
+their applicability. This emphasizes that further research is required to tailor an approach 
+to a personalized use case with greater amounts of data. To address the limitations, we aim 
+to develop a personalized system that predicts fuel economy using a more diverse set of 
+features and a dataset built over approximately 7,000 miles of driving data.
+
+\bibliographystyle{aaai} 
+\bibliography{references_lit.bib}
+
+\end{document}
