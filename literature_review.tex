@@ -616,125 +616,84 @@ network (GRNN).
 
 \subsection*{Datasets}
 
-The datasets used in the reviewed papers vary significantly in terms of their
-collection methods, the types of vehicles involved, and the parameters recorded.
-Most studies focus on using On-Board Diagnostics (OBD) data, GPS data, or a
-combination of both to predict fuel consumption. 
+Studies like \cite{al2007experimental} utilize direct fuel line sensors for precise
+measurements. This captures real-time consumption across vehicles from the 1990s onward. 
+This method ensures accuracy, but its reliance on physical vehicle modifications limits 
+scalability. Other researchers, such as \cite{rykala2023modeling} and \cite{abukhalil2020fuel} 
+employ OBD-II tools to gather engine parameters like RPM, throttle position, and gear usage. 
+These OBD-centric approaches excel in capturing engine-specific behaviors but may overlook 
+broader driving context. Similarly, \cite{Manjunath2024} focus on identifying eco-driving 
+habits using OBD data. \cite{abediasl2024real} leverage OBD data from fleet vehicles, 
+including hybrids, to estimate fuel consumption. 
 
-[Al-Momani and Badran]: This study uses real-time fuel consumption data gathered 
-through a flow rate sensor integrated into the fuel line of vehicles. The dataset spans 
-different vehicle makes and models, dating back to the 1990s. This approach captures fuel
-consumption accurately, though it involves significant modifications to the
-vehicle, making it less practical for widespread use. 
+Another point is that GPS-driven datasets, such as those in \cite{yang2022predicting} BearOil 
+app analysis and \cite{filla2025using}'s weather-impact study, prioritize large-scale 
+environmental and behavioral factors. These projects combine millions of records encompassing
+driving patterns, weather conditions, and route topography, enabling macro-level efficiency 
+trends. However, their reliance on self-reported or app-generated data introduces potential 
+noise, as seen in \cite{yang2022predicting}'s focus on model comparisons over granular 
+consumption predictions. Whereas \cite{filla2025using}'s work specifically targets battery 
+electric vehicles (BEVs), highlighting how environmental data complements vehicle performance 
+metrics. 
 
-[Yang et al.]: A large-scale dataset is used, with nearly one million records gathered 
-from the BearOil app. This data includes fuel efficiency reports, driving behavior data
-from surveys, and environmental factors. The large dataset allows for comprehensive analysis 
-and multiple machine learning models, but the focus is more on model comparison rather 
-than the specific prediction of fuel consumption.
-
-[Zhang et al.]: The data collected includes vehicle speed, acceleration, and
-GPS data, which allows for real-time analysis of driving conditions, including
-the effects of sudden changes in speed (jerk). Their dataset offers high
-precision due to the combination of GPS and OBD data. 
-
-[Rykała et al.]: This study utilizes a low-cost OBD-II adapter and onboard phone 
-sensors to gather data from a 320 km route. Variables like engine speed, vehicle speed, 
-and road slope were recorded, with the most influential parameters being gear, speed, and
-engine load. 
-
-[Yen et al.]: Three vehicles were used in their study, and data was gathered on a 
-209-kilometer route through a combination of GPS and OBD data. The study uses driving 
-behavior metrics, such as engine speed and vehicle speed, to predict fuel consumption 
-using advanced deep learning models. 
-
-[TK and PS]: This study collects data via an ELM 327 OBD-II tool connected to a laptop, 
-which records 13 different sensor readings. Data is cleaned and normalized before being 
-used to train models for fuel consumption prediction. The focus is on identifying 
-eco-driving habits. 
-
-[Filla et al.]: The authors use GPS-based vehicle logs along with national meteorological 
-data to predict the impact of weather conditions on energy efficiency. While this data is 
-specifically for battery electric vehicles (BEVs), it offers valuable insights into how
-environmental data can complement vehicle performance data. 
-
-[Wang et al.] (FuelNet): The FuelNet model uses time-series data, including vehicle speed,
-acceleration, GPS coordinates, and fuel consumption. The dataset was gathered from real-world 
-driving scenarios and spans various driving conditions, allowing for robust predictions of 
-fuel consumption based on LSTM networks. 
-
-[Abukhalil et al.]: The data used in this paper was collected using an OBD-II scanner attached
-to three vehicles (Ford Fusion, Toyota Camry, and Mercedes-Benz E280). Parameters like engine 
-RPM, throttle position, and fuel consumption rates were recorded during a 66-kilometer drive. 
-
-Authors of Real-time Fuel Consumption Estimation: The dataset for this study was collected 
-from fleet vehicles, capturing OBD data from various vehicle types, including hybrids, and 
-tracking cold-start conditions. The data was split for training and testing four machine
-learning models to estimate fuel consumption. 
-
-Authors of Neural Network-Based Prediction: This study used six months of GPS and CAN bus data 
-from city buses. The dataset includes driving cycle data such as speed, acceleration, and road
-slope, which is crucial for predicting fuel consumption in real-world conditions.
+Hybrids are increasing in their importance as they approach they bridge these gaps by fusing
+OBD and GPS data. \cite{zhang2023novel} and \cite{yen_combining_2021} combine high-frequency 
+vehicle diagnostics (speed, acceleration, engine load) with detailed GPS trajectories,
+enabling real-time analysis of factors like jerk and road gradient. \cite{wang2020fuelnet}'s 
+FuelNet model expands this further by incorporating time-series LSTM networks trained on 
+diverse driving scenarios. The authors who wrote Neural Network-Based Prediction also use a 
+combination of GPS and CAN bus data to predict fuel consumption in city buses, focusing on 
+driving cycle data such as speed, acceleration, and road slope. The integration of these 
+datasets offers high-value insights but requires advanced preprocessing and modeling techniques.
 
 \section*{Discussion}
 
-The reviewed studies provide valuable insights into how machine learning and data collection 
-methods can be used to predict vehicle fuel consumption. However, there are significant 
-differences in the datasets used, which affect the robustness of the models developed. 
-
 \subsection*{Strengths}
 
-Most studies utilize a variety of data sources, such as OBD data, GPS data, driving behavior
-data, and environmental factors. This variety helps ensure that the models account for 
-different aspects of vehicle performance and driving conditions, which is essential for 
-accurate predictions. Secondly, many studies leverage real-world data from fleets, consumers, 
-and specific driving routes, making their models more applicable to actual conditions. 
-For instance, [Yang et al.] and [Abukhalil et al.] gather large-scale, real-time data from 
-various vehicles, which ensures that their models can generalize well across different vehicle 
-types. Next, several studies, such as those by [Yen et al.] and [Wang et al.], explore 
-advanced machine learning models (e.g., RNN and FNN), which can offer higher accuracy and
-performance compared to traditional methods. These models are especially effective when 
-working with large, complex datasets as we have.
+The studies that were reviewed highlight several strengths in using machine learning and data 
+collection methods to predict vehicle fuel consumption. An important strength is the diversity 
+of data sources used, including OBD data, GPS data, driving behavior metrics, and environmental 
+factors. This diversity of data sources ensures that models account for multiple aspects of 
+vehicle performance and driving conditions, enhancing prediction accuracy. Many studies also 
+emphasize the use of real-world data, such as fleet and consumer driving records or specific 
+driving routes, making their models highly applicable to actual scenarios. A key example is 
+found in \cite{yang2022predicting} and \cite{abukhalil2020fuel} leverage large-scale, 
+real-time datasets from various vehicles, enabling their models to generalize across different 
+vehicle types. Additionally, several studies employ advanced modeling techniques, such as 
+neural networks and deep learning (e.g., \cite{yen_combining_2021} and \cite{wang2020fuelnet}), 
+which offer superior  accuracy and performance when working with large or complex datasets.
 
 \subsection*{Weaknesses}
 
-Some studies require specialized equipment or significant  modifications to vehicles, 
-which can limit the practicality of their methods. For example, [Al-Momani] and [Badran] use a 
-flow rate sensor that requires integration into the vehicle’s fuel line, which is not easily 
-accessible for everyday users.
-
-While some studies focus on a broad range of parameters, others, such as TK and PS, narrow 
-their focus to a small set of factors like driving habits. This may limit the models' 
-ability to capture all the nuances of fuel consumption behavior. Additionally, [Filla et al.] 
-focus exclusively on electric vehicles, limiting the applicability of their findings to 
-gasoline-powered vehicles.
-
-Several studies compare multiple machine learning models, such as [Yang et al.] and 
-[Zhang et al.], but it is often unclear which model performs best under different 
-circumstances. The use of several models can sometimes obscure the optimal choice for 
-specific scenarios. [Abukhalil et al.] and Real-time Fuel Consumption Estimation studies show 
-promising results with Random Forest (RF) and ANN models, but further exploration is needed 
-to determine the best model for different types of vehicles and driving conditions.
+Even though there are these present strengths, the studies also reveal notable weaknesses. 
+Data collection challenges are a significant limitation in some cases. For example, 
+\cite{al2007experimental} require a flow rate sensor integrated into the vehicle's fuel line, 
+which is impractical for widespread use due to its invasive nature. Another problem is the 
+limited scope of certain studies; for example, \cite{Manjunath2024} focus narrowly on driving 
+habits, potentially missing other critical factors influencing fuel consumption. Also, 
+\cite{filla2025using}'s focus on electric vehicles limits the applicability of their findings 
+to gasoline-powered vehicles. When we look deeper, we see there is a lack of clarity in model
+performance comparisons in some studies. \cite{yang2022predicting} and \cite{zhang2023novel}, 
+for instance, compare multiple machine learning models without clearly identifying which 
+performs best under specific conditions. Studies like \cite{abukhalil2020fuel} and Real-time 
+Fuel Consumption Estimation show promising results with Random Forest (RF) and Artificial 
+Neural Networks (ANN), but further exploration is needed to determine optimal models for 
+different scenarios.
 
 
 \subsection*{Opportunities}
 
-Combining multiple data sources (e.g., OBD, GPS, and weather data) could lead to more accurate 
-predictions. Studies like [Filla et al.] demonstrate the potential benefits of including 
-environmental data, which could be explored further in future work.
-
-There is room to refine models by incorporating additional parameters or optimizing the 
-existing models. For example, [Wang et al.] (FuelNet) use time-series data and LSTM networks, 
-which are promising for improving prediction accuracy, especially in real-time applications.
-
-Some studies, such as [Yang et al.], use massive datasets to train their models. This 
-scalability could be expanded to include more vehicles, longer driving routes, and more 
-diverse driving conditions to improve the robustness of the models.
-
-The reviewed studies showcase the value of using data-driven methods to predict vehicle fuel 
-consumption. However, there are clear trade-offs between model complexity, data requirements, 
-and accuracy. Future work can focus on optimizing these models and making them more accessible 
-for real-world applications.
+The studies also present opportunities for future research to address existing gaps and improve 
+prediction methods. One of the most promising avenues is the adoption of hybrid approaches that 
+combine multiple data sources such as OBD, GPS, and weather data. This is done to improve 
+accuracy. For example, \cite{filla2025using} demonstrate the potential benefits of integrating 
+environmental data into predictive models. There is also major potential to enhance model 
+accuracy by incorporating additional parameters or optimizing existing methods; 
+\cite{wang2020fuelnet}'s  FuelNet model using time-series data and LSTM networks exemplifies 
+how advanced techniques can improve real-time prediction capabilities. Ultimately, scalability 
+remains a key opportunity. Studies like \cite{yang2022predicting}, which use massive datasets, 
+could expand their scope to include more vehicles, longer routes, and diverse driving conditions 
+to build more complex models applicable across different contexts.
 
 % Seif, minor edits by Samuel
 
