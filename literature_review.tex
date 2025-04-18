@@ -481,64 +481,56 @@ to fuel consumption.
 This theme includes studies that collect vehicle data through OBD-II and predict
 fuel consumption using machine learning techniques. 
 
-[Zhang et al.] evaluates the
-effects of vehicle jerk, where large changes in speed occur over a very short
-period of time, on fuel economy. The authors utilized a system that integrated a
-global positioning system (GPS) and on-board diagnostic (OBD) interface,
-allowing them to gather high-accuracy, real-time data on vehicle status. This
-work closely aligns with the proposed methodology, utilizing a common diagnostic
-tool compatible with a wide variety of modern vehicles. 
+\cite{zhang2023novel} evaluates the effects of vehicle jerk, where large changes in speed 
+occur over a very short period of time, on fuel economy. The authors utilized a system that 
+integrated a global positioning system (GPS) and on-board diagnostic (OBD) interface, allowing 
+them to gather high-accuracy, real-time data on vehicle status. This work closely aligns with 
+the proposed methodology, utilizing a common diagnostic tool compatible with a wide variety of 
+modern vehicles. 
 
-[Rykała et al.]
-developed an innovative approach to modeling vehicle fuel consumption by
-leveraging data collected using a low-cost OBD-II adapter alongside onboard
-phone sensors. They tested three distinct types of models: a multivariate
-regression model, decision trees, and a set of 750 multilayer perceptron (MLP)
-models. Among these, the MLP models demonstrated the greatest accuracy, making
-them the most reliable choice for forecasting fuel consumption under diverse
-driving conditions. 
+\cite{rykala2023modeling} developed an innovative approach to modeling vehicle fuel consumption 
+by leveraging data collected using a low-cost OBD-II adapter alongside onboard phone sensors. 
+They tested three distinct types of models: a multivariate regression model, decision trees, 
+and a set of 750 multilayer perceptron (MLP) models. Among these, the MLP models demonstrated 
+the greatest accuracy, making them the most reliable choice for forecasting fuel consumption 
+under diverse driving conditions. 
 
-[Yen et al.] explore utilizing Elman Recurrent Neural
-Network (RNN) and Feed-Forward Backpropagation (FFB) models to predict fuel
-consumption with the goal of progressing energy-saving and safe-driving
-developments. They collected data from several vehicles to feed these networks.
-For their data, they used three vehicles driven on a mix of relatively flat and
-mountainous roads common in western Taiwan. Each of the vehicles was driven
+\cite{yen_combining_2021} explore utilizing Elman Recurrent Neural Network (RNN) and 
+Feed-Forward Backpropagation (FFB) models to predict fuel consumption with the goal of 
+progressing energy-saving and safe-driving developments. They collected data from several 
+vehicles to feed these networks. For their data, they used three vehicles driven on a mix of 
+relatively flat and mountainous roads common in western Taiwan. Each of the vehicles was driven
 along the same 209 kilometer (130 mile) route. 
 
-[Manjunath and Kumar] explore a
-machine learning-based approach to predict and improve fuel consumption by
-analyzing how people drive. To gather real-world data, they used an ELM 327
-OBD-II tool connected to a laptop, which recorded 13 different sensor readings
-from the car. They used linear regression and support vector regression to
-estimate fuel efficiency, with the goal of encouraging eco-friendly driving and
-cutting down on greenhouse gas emissions. 
+\cite{Manjunath2024} explore a machine learning-based approach to predict and improve fuel 
+consumption by analyzing how people drive. To gather real-world data, they used an ELM 327
+OBD-II tool connected to a laptop, which recorded 13 different sensor readings from the car. 
+They used linear regression and support vector regression to estimate fuel efficiency, with the 
+goal of encouraging eco-friendly driving and cutting down on greenhouse gas emissions. 
 
-[Abukalil et al.] present a Machine
-Learning (ML)-based model to estimate real-time fuel consumption by collecting
-data from an OBD-II scanner. The authors' model combines a Support Vector
-Machine (SVM) algorithm with Lagrange interpolation to analyze the relationship
-between engine parameters and fuel consumption.The Experiments were conducted on
-a fixed 66 kilometer highway route using three gasoline-powered vehicles that
-have different engine displacements and horsepower. The author's model was able
-to achieve a Root-Mean-Square Error (RMSE) score of 2.4364, proving its
-potential in predicting fuel consumption. 
+\cite{abukhalil2020fuel} present a Machine Learning (ML)-based model to estimate real-time 
+fuel consumption by collecting data from an OBD-II scanner. The authors' model combines a 
+Support Vector Machine (SVM) algorithm with Lagrange interpolation to analyze the relationship
+between engine parameters and fuel consumption.The Experiments were conducted on a fixed 66 
+kilometer highway route using three gasoline-powered vehicles that have different engine 
+displacements and horsepower. The author's model was able to achieve a Root-Mean-Square Error 
+(RMSE) score of 2.4364, proving its potential in predicting fuel consumption. 
 
-[Abediasl et al.] explore machine
-learning for real-time fuel consumption estimation using onboard diagnostics
-(OBD) data from fleet vehicles. They collected OBD data from different vehicle
-types (sedans, SUVs, pickup trucks) with various powertrains, including hybrids,
-and included cold-start conditions to capture fuel consumption during engine
-warm-up. They tested four models: Random Forest (RF), Artificial Neural Networks
-(ANN), Support Vector Machines (SVM), and k-Nearest Neighbors (KNN). RF and ANN
-performed the best, so they focused on comparing these two. 
+\cite{abediasl2024real} explore machine learning for real-time fuel consumption estimation 
+using onboard diagnostics (OBD) data from fleet vehicles. They collected OBD data from 
+different vehicle types (sedans, SUVs, pickup trucks) with various powertrains, including 
+hybrids, and included cold-start conditions to capture fuel consumption during engine warm-up. 
+They tested four models: Random Forest (RF), Artificial Neural Networks (ANN), Support Vector 
+Machines (SVM), and k-Nearest Neighbors (KNN). RF and ANN performed the best, so they focused 
+on comparing these two. 
 
 \subsubsection*{Comparison}~\\
+
 All six papers leverage OBD-II diagnostics, but they differ in model, vehicle diversity,
-and methods. While Abukhalil et al., Majunath and Kumar, and Abediasl et al.
-favor regression and SVM-based models, Rykala et al. and Yen et al. employ deep
-learning approaches like MLPs and RNNs. Zhang et al. focus on the impact of jerk,
-while Abesiasl et al. look into model generalization across vehicle types and
+and methods. While \cite{abukhalil2020fuel}, \cite{Manjunath2024}, and \cite{abediasl2024real}
+favor regression and SVM-based models, \cite{rykala2023modeling} and \cite{yen_combining_2021} 
+employ deep learning approaches like MLPs and RNNs. \cite{zhang2023novel} focus on the impact 
+of jerk, while \cite{abediasl2024real} look into model generalization across vehicle types and
 cold-start conditions. All together, these studies confirm the value of OBD data.
 
 % Andrew 
