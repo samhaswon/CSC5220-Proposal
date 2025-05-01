@@ -313,19 +313,7 @@ For their data, they used three vehicles driven on a mix of relatively flat and
 mountainous roads common in western Taiwan. Each of the vehicles was driven
 along the same 209-kilometer (130-mile) route. This data was cleaned and
 normalized before it was used for training the models. For comparison, they
-calculated the instantaneous fuel consumption using the equation: 
-
-\[
-\begin{aligned}
-    \mathrm{FuelConsumption}_{\mathrm{inst}} =&~ \mathrm{RPMWeight}_{\mathrm{avg}}
-    \times \mathrm{EngineLoad}_{\mathrm{avg}}\\
-    &\times 2.3 \times \mathrm{FuelFactor}
-    \times t(s)\times\\ 
-    &\mathrm{EngineDisplacement}/7545  
-\end{aligned}
-\] 
-
-\noindent
+calculated the instantaneous fuel consumption mathematically.
 
 % Saif
 
@@ -494,16 +482,15 @@ effects of each feature group.
 
 The raw data used in this project was collected through the Torque mobile 
 application, which logs real-time vehicle sensor data. These logs were 
-cleaned and processed using a custom script \verb|(clean_data.py)| to ensure 
-consistency and usability for machine learning. But only essential 
-features such as engine RPM, throttle position, fuel usage, speed, 
-altitude, and positional coordinates were retained. Duplicate entries were 
-removed, and invalid/corrupted values, particularly those found in the fuel 
-usage field, were filtered out. Instant fuel consumption values were pulled 
-by computing the difference between successive readings of the cumulative 
-trip fuel usage. The terrain slope, referred to as grade, was calculated 
-using changes in altitude and vehicle speed, while its first derivative, 
-``grade break,'' was included to reflect shifts in road incline. 
+cleaned and processed to ensure consistency and usability for machine 
+learning. But only essential features such as engine RPM, throttle 
+position, fuel usage, speed, altitude, and positional coordinates were 
+retained. Duplicate entries were removed, and invalid/corrupted values, 
+particularly those found in the fuel usage field, were filtered out. 
+Instant fuel consumption values were pulled by computing the difference 
+between successive readings of the cumulative trip fuel usage. The 
+terrain slope, referred to as grade, was calculated using changes in 
+altitude and vehicle speed to reflect shifts in road incline. 
 Historical weather data was integrated into the dataset using the 
 Open-Meteo API, with temperature values mapped to each GPS coordinate 
 and timestamp. In some versions of the dataset, a moving average filter 
@@ -531,7 +518,7 @@ States.
 % speed_vs_mpg.png figure
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/speed_vs_mpg.png}
+    \includegraphics[width=0.4\textwidth]{figures/speed_vs_mpg.png}
     \caption{Plot of speed vs MPG}
     \label{fig:mpgspeed}
 \end{figure}
@@ -539,7 +526,7 @@ States.
 % histogram_speedobdmph.png figure
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/histogram_speedobdmph.png}
+    \includegraphics[width=0.4\textwidth]{figures/histogram_speedobdmph.png}
     \caption{Histogram of speed}
     \label{fig:histmpgspeed}
 \end{figure}
@@ -560,7 +547,7 @@ decrease in fuel  economy past an intake air temperature of approximately
 % intake_air_temp_mpg.png figure
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/intake_air_temp_mpg.png}
+    \includegraphics[width=0.4\textwidth]{figures/intake_air_temp_mpg.png}
     \caption{Intake Air Temperature (\textdegree F) vs MPG}
     \label{fig:intakeairtempmpg}
 \end{figure}
@@ -599,7 +586,7 @@ as shown in Figure \ref{fig:throttlevsmpg}.
 % throttle_vs_mpg.png figure
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/throttle_vs_mpg.png}
+    \includegraphics[width=0.4\textwidth]{figures/throttle_vs_mpg.png}
     \caption{Plot of throttle vs MPG}
     \label{fig:throttlevsmpg}
 \end{figure}
@@ -622,7 +609,7 @@ required to go up a hill, and how much (if any) it will take to go down it.
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/grade_vs_mpg.png}
+    \includegraphics[width=0.4\textwidth]{figures/grade_vs_mpg.png}
     \caption{Plot of Grade vs MPG}
     \label{fig:gradevsmpg}
 \end{figure}
@@ -808,7 +795,7 @@ variability in MPG and the presence of more outliers.
 % sqrt_speed_weather_vs_mpg_multiregression_model.png figure
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/sqrt_speed_weather_vs_mpg_multiregression_model.png}
+    \includegraphics[width=0.4\textwidth]{figures/sqrt_speed_weather_vs_mpg_multiregression_model.png}
     \caption{Plot of MPG predictions of a linear model using speed and weather data.}
     \label{fig:weatherspeedvsmpg}
 \end{figure}
@@ -816,7 +803,7 @@ variability in MPG and the presence of more outliers.
 % sqrt_speed_rpm_vs_mpg_multiregression_model.png
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/sqrt_speed_rpm_vs_mpg_multiregression_model.png}
+    \includegraphics[width=0.4\textwidth]{figures/sqrt_speed_rpm_vs_mpg_multiregression_model.png}
     \caption{Plot of MPG predictions of a linear model using speed and RPM data.}
     \label{fig:rpmspeedvsmpg}
 \end{figure}
@@ -824,7 +811,7 @@ variability in MPG and the presence of more outliers.
 % speed_vs_mpg_linear_model.png
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/speed_vs_mpg_linear_model.png}
+    \includegraphics[width=0.4\textwidth]{figures/speed_vs_mpg_linear_model.png}
     \caption{Plot of MPG predictions of a linear model using speed data.}
     \label{fig:speedvsmpglinear}
 \end{figure}
@@ -964,7 +951,7 @@ usage, and it had a total loss at the end of training of 3.0846
 
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/loss.jpg}
+    \includegraphics[width=0.4\textwidth]{figures/loss.jpg}
     \caption{Loss of the RNN on the POLIDriving dataset}
     \label{fig:lossrnn}
 \end{figure}
@@ -975,7 +962,7 @@ match the true value (Figure \ref{fig:predictionrnn}).\\
 % rnn_predictions.png
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/rnn_predictions.png}
+    \includegraphics[width=0.4\textwidth]{figures/rnn_predictions.png}
     \caption{Predictions of the RNN on the POLIDriving dataset}
     \label{fig:predictionrnn}
 \end{figure}
