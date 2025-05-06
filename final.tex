@@ -179,7 +179,7 @@
 % Remove the copyright from the footer
 \nocopyright
 
-\title{Temperature-Dependent Estimation of Vehicle Fuel Economy:\\Experimental Methodology}
+\title{Temperature-Dependent Estimation of Vehicle Fuel Economy}
 \author{Sindu Chitraju, Samuel Howard, Seif Ilkbarieh, Om Solanki, Andrew Wheeler\\
 Tennessee Technological University
 }
@@ -594,7 +594,9 @@ as shown in Figure \ref{fig:throttlevsmpg}.
 \subsection*{Extravehicular Factors}
 
 Weather, specifically temperature, was an additional chosen factor as it 
-directly correlates with the intake air temperature and air density. It 
+directly correlates with the intake air temperature and air density. 
+This directly effects the amount of fuel delivered to the engine as the
+ECU attempts to maintain a stochiometric air-fuel ratio. It 
 also changes less than the intake air temperature in traffic or other 
 conditions where the vehicle is stopped. Finally, seasonal differences in 
 fuel blends are dependent on cooler or warmer weather and can be accounted 
@@ -832,6 +834,8 @@ load, engine RPM, intake air temperature, relative throttle position, and
 speed.
 
 \begin{table}[]
+    \centering
+    \small
     \begin{tabular}{|l|l|l|l|}
         \hline
         \textbf{Layer Num} & \textbf{Hidden Size} & \textbf{$R^{2}$} & \textbf{MAE} \\
@@ -854,6 +858,8 @@ including the outside temperature at the time of driving, in addition to
 the already-existing parameters.
 
 \begin{table}[]
+    \centering
+    \small
     \begin{tabular}{|l|l|l|l|}
         \hline
         \textbf{Layer Num} & \textbf{Hidden Size} & \textbf{$R^{2}$} & \textbf{MAE} \\
@@ -878,6 +884,8 @@ value was calculated from the change in altitude for a specific interval
 at a given speed.
 
 \begin{table}[]
+    \centering
+    \small
     \begin{tabular}{|l|l|l|l|}
         \hline
         \textbf{Layer Num} & \textbf{Hidden Size} & \textbf{$R^{2}$} & \textbf{MAE} \\
@@ -917,16 +925,18 @@ parameter. Again, only the fuel use was predicted, and weather data and
 slope grade were included.
 
 \begin{table}[]
-\begin{tabular}{|l|l|l|l|}
-    \hline
-    \textbf{Layer Num} & \textbf{Hidden Size} & \textbf{$R^{2}$} & \textbf{MAE} \\
-    \hline
-    4              	& 64               	& 0.8234  	& 0.0014   	\\
-    6              	& 128              	& 0.8205  	& 0.0014 	\\
-    \hline
-\end{tabular}
-\caption{Best performing models for weather and grade, bearing omitted.}
-\label{tab:tb4}
+    \centering
+    \small
+    \begin{tabular}{|l|l|l|l|}
+        \hline
+        \textbf{Layer Num} & \textbf{Hidden Size} & \textbf{$R^{2}$} & \textbf{MAE} \\
+        \hline
+        4              	& 64               	& 0.8234  	& 0.0014   	\\
+        6              	& 128              	& 0.8205  	& 0.0014 	\\
+        \hline
+    \end{tabular}
+    \caption{Best performing models for weather and grade, bearing omitted.}
+    \label{tab:tb4}
 \end{table}
 
 The overall performance of the models in this situation was reduced by a 
@@ -962,7 +972,7 @@ match the true value (Figure \ref{fig:predictionrnn}).\\
 % rnn_predictions.png
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.4\textwidth]{figures/rnn_predictions.png}
+    \includegraphics[width=0.38\textwidth]{figures/rnn_predictions.png}
     \caption{Predictions of the RNN on the POLIDriving dataset}
     \label{fig:predictionrnn}
 \end{figure}
@@ -980,6 +990,8 @@ calculated from that.
 The overall metrics for the model are as follows:
 
 \begin{table}[h!]
+    \centering
+    \small
     \begin{tabular}{|l|l|}
         \hline
         Metric & Value \\
