@@ -29,6 +29,10 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: final.tex
+      - name: Compile undergrad LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: undergrad_project.tex
       - name: Get current timestamp
         id: timestamp
         run: echo "timestamp=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
@@ -51,6 +55,7 @@ jobs:
             literature_review.pdf
             experimental_methodology.pdf
             final.pdf
+            undergrad_project.pdf
           tag_name: release-${{ env.timestamp }}
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
